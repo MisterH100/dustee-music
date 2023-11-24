@@ -4,7 +4,7 @@ import Link from "next/link"
 
 export const Footer =()=>{
     return(
-        <footer className="footer p-10 bg-blue-500">
+        <footer className="footer p-10 bg-blue-700">
             <aside>
                 <h1 className="text-white text-5xl md:text-8xl font-bold">Dus-tee</h1>
                 <p>@the_everlasting_storm</p>

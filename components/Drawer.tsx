@@ -1,9 +1,27 @@
-import Link from "next/link"
+'use client'
+import { useRouter} from "next/navigation";
 import { SocialLinks } from "./SocialLinks"
+import { useGlobalContext } from "@/hooks/globalContext"
+
 
 
 
 export const Drawer =()=>{
+    const router= useRouter();
+    const {setCursor} = useGlobalContext();
+    let hash: string
+    if(typeof window !== 'undefined'){
+        hash = window.location.hash
+    }
+
+    const navLinks =[
+        {link: "Home",href:"#home"},
+        {link: "About",href:"#about"},
+        {link: "Albums",href:"#albums"},
+        {link: "Gallery",href:"#gallery"},
+
+    ]
+
     return(
         <div className="drawer z-50 drawer-end">
             <input id="my-drawer" type="checkbox" className="drawer-toggle" />
@@ -44,19 +62,24 @@ export const Drawer =()=>{
                         
                         </label>
                     </li>
-                    <div className="pt-10 flex flex-col gap-4">
-                        <li>
-                            <Link href={"#home"} className="text-white text-xl font-medium">Home</Link>
-                        </li>
-                        <li>
-                            <Link href={"#about"} className="text-white text-xl font-medium">About</Link>
-                        </li>
-                        <li>
-                            <Link href={"#albums"} className="text-white text-xl font-medium">Albums</Link>
-                        </li>
-                        <li>
-                            <Link href={"#gallery"} className="text-white text-xl font-medium">Gallery</Link>
-                        </li>
+                    <div
+                        onMouseEnter={()=>setCursor(true)}
+                        onMouseLeave={()=>setCursor(false)}
+                        className="pt-10 flex flex-col gap-4">
+                        {navLinks.map((link,index)=>       
+                            <li 
+                                key={index}
+                                onClick={()=>router.push(link.href)}>
+                                <label 
+                                    htmlFor="my-drawer" 
+                                    aria-label="close sidebar" 
+                                    className="text-white text-xl font-medium drawer-overlay w-fit cursor-pointer"
+                                    style={hash == link.href? {fontSize: "40px"}: {}}
+                                    >
+                                    {link.link}
+                                </label>
+                            </li>
+                        )}    
                     </div>
                     <div className="pt-10">
                         <SocialLinks/>

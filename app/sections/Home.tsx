@@ -5,12 +5,15 @@ import { SocialLinks } from '@/components/SocialLinks';
 import SwirlyArrow from '@/assets/swirly-arrow.svg';
 import { Track } from '@/components/Track';
 import { useGlobalContext } from '@/hooks/globalContext';
-
+import { motion,useInView } from 'framer-motion';
+import { useRef, useState } from 'react';
 
 
 export const HomeSection =()=>{
-    const {songs} = useGlobalContext();
-    
+    const {songs,setCursor} = useGlobalContext();
+    const containerRef = useRef(null);
+    const isInView = useInView(containerRef);
+
     return(
         <section className="relative w-full min-h-screen" id="home">
             <div className="w-full h-screen flex">
@@ -24,19 +27,38 @@ export const HomeSection =()=>{
 
                     </div>
                 </div>
-                <div className="absolute md:relative top-0 w-full h-screen md:w-1/2 bg-stone-900 bg-opacity-50 md:bg-blue-500 pt-40 px-4 md:px-10 z-[100]">
-                    <div>
-                        <h1 className="text-white text-5xl font-bold">Dus-tee</h1>
+                <div className="absolute md:relative top-0 w-full h-screen md:w-1/2 bg-stone-900 bg-opacity-50 pt-40 px-4 md:px-10 z-[100]">
+                    <div className="relative w-fit overflow-hidden" ref={containerRef}>
+                        <motion.div
+                            initial={{width:"100%"}}
+                            animate={isInView?{width:0}:{width:"100%"}}
+                            transition={{duration:0.5}}
+                            className="absolute w-full h-full top-0 left-0 bg-white" 
+                        >
+                        </motion.div>
+                        <h1
+                            className="text-white text-5xl md:text-8xl font-bold">
+                            Dus-tee
+                        </h1>
 
                     </div>
-                    <div className="realtive z-20 pt-4">
-                        <h2 className="text-white text-base">Today's picks
+                    <div
+                        onMouseEnter={()=>setCursor(true)}
+                        onMouseLeave={()=>setCursor(false)}
+                        className="relative z-20 pt-4">
+                        <h2 className="text-white text-lg font-bold">Today's picks
                         </h2>
-                        {songs.map((song)=>
-                            <Track song={song}/>
+                        {songs.map((song,index)=>
+                            <Track 
+                                key={index} 
+                                song={song}
+                            />
                         )}
                     </div>
-                    <div className="relative z-20 pt-10">
+                    <motion.div
+                        animate={isInView?"enter":"exit"}
+                        transition={{duration:0.5,type:"tween"}} 
+                        className="relative z-20 pt-10">
                         <div className="w-full flex gap-2 items-center justify-center">
                             <h3 className="text-white text-base">follow</h3>
                             <Image
@@ -47,7 +69,8 @@ export const HomeSection =()=>{
                             />
                         </div>
                         <SocialLinks/>
-                    </div>
+                    </motion.div>
+                            
                     <div className="absolute w-full h-full bottom-0 left-0 z-10 bg-gradient-to-t from-stone-900 to-20% pointer-events-none">
 
                     </div>

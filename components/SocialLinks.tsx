@@ -7,9 +7,9 @@ import Youtube from '@/assets/YouTube-Icon.svg';
 
 export const SocialLinks =()=>{
     const links =[
-        {url:"", name: "SoundCloud",logo: SoundCloud},
-        {url:"", name: "Instagram",logo: Instagram},
-        {url:"", name: "YouTube",logo: Youtube}
+        {url:"#", name: "SoundCloud",logo: SoundCloud},
+        {url:"https://instagram.com/the_everlasting_storm", name: "Instagram",logo: Instagram},
+        {url:"#", name: "YouTube",logo: Youtube}
     ];
 
     return(
@@ -18,17 +18,18 @@ export const SocialLinks =()=>{
                 <Link
                     key={index}
                     href={link.url}
+                    target="_blank"
                     className="flex flex-col items-center gap-2"
                     >
-                    <div className="w-[40px] h-[40px] rounded-full overflow-hidden">
+                    <div className="w-[20px] h-[20px] flex justify-center items-center overflow-hidden">
                         <Image
                             src={link.logo}
                             alt="logo"
-                            width={40}
-                            height={40}
+                            width={20}
+                            height={20}
                         />
                     </div>
-                    <span className="text-white text-sm sm:text-base font-bold">{link.name}</span>
+                    <span className="text-white text-sm font-bold">{link.name}</span>
                     
                 </Link>
             )}

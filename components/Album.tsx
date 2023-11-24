@@ -4,8 +4,8 @@ import DTMAlbum from '@/assets/albumcover.jpg';
 
 export const Album =()=>{
     return(
-        <div className="w-[250px] md:w-[300px]">
-            <div className="w-full h-[300px] overflow-hidden">
+        <div className="w-[200px] md:w-[200px]">
+            <div className="w-full h-[200px] overflow-hidden">
                 <Image
                     src={DTMAlbum}
                     alt='album-cover'
@@ -14,9 +14,9 @@ export const Album =()=>{
                 />
             </div>
             <div className="w-full text-center">
-                <h2 className="w-full text-white text-2xl font-bold truncate">DTM</h2>
-                <span className="block text-zinc-400 text-xl font-bold">Songs • 8</span>
-                <span className="block text-zinc-400 text-xl font-bold">Release • 2023</span>
+                <h2 className="w-full text-white text-xl font-bold truncate">DTM</h2>
+                <span className="block text-zinc-400 text-lg font-bold">Songs • 8</span>
+                <span className="block text-zinc-400 text-lg font-bold">Release • 2023</span>
             </div>
         </div>
     )

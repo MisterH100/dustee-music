@@ -8,8 +8,8 @@ export const GalleryBanner =()=>{
                 className="w-full h-full object-cover"
                 src={HomeBg}
                 alt='gallery-image'
-                width={350}
-                height={350}
+                width={500}
+                height={500}
             />
         </div>
     )
