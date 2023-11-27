@@ -25,7 +25,7 @@ export const AboutSection =()=>{
                         <h1 className="text-white text-5xl md:text-8xl font-bold">About<span className="text-white text-xl md:text-2xl font-bold ml-4">Dus-tee</span></h1>
                     </div>
                     <p className="text-white text-base md:text-2xl font-bold max-w-xl pt-4">
-                        my name is Joy, but you can call me Dustee. I'm an artist who has a huge love for music.
+                        my name is Joy, but you can call me Dustee. I'm an artist who has huge love for music.
                     </p>
                     <p className="text-white text-base max-w-xl pt-4 md:pt-10">
                         Follow me on Instagram at <Link className="link" href="https://instagram.com/the_everlasting_storm" target="_blank">@the_everlasting_storm</Link> and listen to my music on <Link className="link" href="https://soundcloud.com/user-565416632" target="_blank">SoundCloud</Link> and <Link className="link" href="https://www.youtube.com/@dus-tee1886" target="_blank">YouTube</Link>.
