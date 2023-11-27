@@ -42,7 +42,7 @@ export const Header = ()=>{
 
             </div>
 
-            <nav className={`relative w-full h-full flex z-20`}>
+            <nav className="w-full h-full flex">
                 <AnimatePresence>
                     {isScrolled?
                         <motion.div
