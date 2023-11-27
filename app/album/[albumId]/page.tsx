@@ -45,7 +45,7 @@ export default function AlbumPage() {
         if(album){
             setSongs(album.songs)
         }
-    },[album,albumId]);
+    },[album,albumId,albums,setSongs]);
 
     return(
         <main className="relative w-full min-h-screen bg-stone-900 p-4 md:p-10">

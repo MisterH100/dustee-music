@@ -17,7 +17,7 @@ export const HomeSection =()=>{
 
     useEffect(()=>{
         setTodayPicks([albums[0].songs[2],albums[0].songs[3]]);
-    },[]);
+    },[albums]);
 
     return(
         <section className="relative w-full min-h-screen" id="home">

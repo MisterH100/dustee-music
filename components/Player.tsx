@@ -78,7 +78,7 @@ export const Player =()=>{
             
         });
         setSongs(albums[0].songs);
-    },[songs,nowPlaying]);
+    },[songs,nowPlaying,albums,setSongs]);
     
     return(
         <dialog 

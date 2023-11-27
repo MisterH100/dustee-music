@@ -35,7 +35,7 @@ export const Track =({song,}:{song:ISong})=>{
             if(album.songs.find((song)=>song.id == song.id))
             setSource(album.cover)
         })
-    },[])
+    },[albums])
 
     return(
         <motion.div
