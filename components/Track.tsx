@@ -48,7 +48,7 @@ export const Track =({song,}:{song:ISong})=>{
             transition={{type:"spring"}}
             className='relative flex h-[100px] mt-4 bg-blue-700 rounded-lg overflow-hidden shadow hover:bg-blue-800 transition-all duration-300 ease-in-out group z-50'>
 
-            <div className="relative min-w-[100px] h-full z-10 group">
+            <div className="relative min-w-[100px] w-[100px] h-full z-10 group">
                 {source?  
                     <Image
                         className='w-full h-full object-cover'
@@ -97,8 +97,10 @@ export const Track =({song,}:{song:ISong})=>{
             </div>
             <div className="w-full flex flex-1 h-full px-4">
                 <div className="w-full  md:w-52 flex flex-col justify-center">
-                    <h3 className="w-[80%] md:w-full text-white text-lg md:text-xl font-normal truncate">{song.title}</h3>
-                    <h4 className="text-zinc-300 text-base md:text-xl font-normal">{song.artist}</h4>
+                    <div className="w-80% overflow-hidden ">
+                        <h3 className="text-white text-lg md:text-xl font-normal w-fit whitespace-nowrap">{song.title}</h3>
+                        <h4 className="text-zinc-300 text-base md:text-xl font-normal w-fit whitespace-nowrap">{song.artist}</h4>
+                    </div>
                     <div className="flex items-center gap-2">
                         <svg 
                         className="w-[12px] h-[12px] text-white" 
