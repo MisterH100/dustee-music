@@ -56,7 +56,7 @@ export const Header = ()=>{
                         </motion.div>: null
                     }
                 </AnimatePresence>
-                <div className="relative w-1/2 text-white flex items-center flex-1 flex-shrink">     
+                <div className="relative w-fit sm:w-1/2 text-white flex items-center flex-1 flex-shrink">     
                     <AnimatePresence>
                         {widget?
                             <motion.div
