@@ -24,7 +24,7 @@ export const Drawer =()=>{
     ]
 
     return(
-        <div className="drawer z-[999] drawer-end">
+        <div className="drawer drawer-end">
             <input id="my-drawer" type="checkbox" className="drawer-toggle" />
             <div className="drawer-content flex justify-end">
                 <label 
@@ -40,7 +40,7 @@ export const Drawer =()=>{
                     </svg>
                 </label>
             </div> 
-            <div className="drawer-side z-[999]">
+            <div className="drawer-side">
                 <label 
                 htmlFor="my-drawer" 
                 aria-label="close sidebar" 

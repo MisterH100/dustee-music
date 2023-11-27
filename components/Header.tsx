@@ -86,7 +86,7 @@ export const Header = ()=>{
                     )}
                 </ul>
                 
-                <div className="relative w-fit sm:w-1/2 h-full flex md:hidden justify-end items-center px-4">
+                <div className="relative w-fit sm:w-1/2 h-full flex md:hidden justify-end items-center px-4 z-[999]">
                     <Drawer/>
                 </div>
                 
