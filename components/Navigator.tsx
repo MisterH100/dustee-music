@@ -28,7 +28,7 @@ export const Navigator = ()=>{
             animate={cursor?["enter","move"]:["exit","move"]}
             exit="exit"
             ref={cursorRef}
-            className={`pointer-events-none fixed z-50 w-10 h-10 rounded-full bg-white -translate-x-[50%] -translate-y-[50%] origin-center flex justify-center items-center overflow-hidden`}
+            className={`pointer-events-none fixed z-[9999] w-10 h-10 rounded-full bg-white -translate-x-[50%] -translate-y-[50%] origin-center flex justify-center items-center overflow-hidden`}
             >
         </motion.div>
     )

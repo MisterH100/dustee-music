@@ -1,16 +1,20 @@
 'use client'
 import { useGlobalContext } from "@/hooks/globalContext"
 import Image from 'next/image';
-import Clown from '@/assets/clown.png';
-import { ChangeEvent, useState } from "react";
-
+import SoundCloud from '@/assets/sound-cloud.svg';
+import { ChangeEvent, useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
+import Link from "next/link";
 
 export const Player =()=>{
-    const {playerRef,audioRef,nowPlaying,setNowPlaying,setWidget,setWidgetDuration,isPlaying,playPause,songs} = useGlobalContext();
+    const {playerRef,audioRef,nowPlaying,setNowPlaying,setWidget,setWidgetDuration,isPlaying,playPause,songs,setSongs,albums} = useGlobalContext();
     const [audioCurrentTime, setAudioCurrentTime] = useState<number>(0);
     const [audioDuration, setAudioDuration] = useState<number>(0);
     const [trackIndex, setTrackIndex] = useState(0);
+    const [source,setSource] = useState("");
+    const [soundCloud,setSoundClound] = useState("");
     const audio = audioRef.current;
+    const pathname = usePathname();
 
     const calculateTime = (secs:number) => {
         const minutes = Math.floor(secs / 60);
@@ -65,12 +69,22 @@ export const Player =()=>{
             setNowPlaying(songs[trackIndex - 1]);
         }
     }
+
+    useEffect(()=>{
+        albums.map((album)=>{
+            if(album.songs.find((s)=>s.id == nowPlaying.id))
+            setSource(album.cover);
+            setSoundClound(album.soundCloudLink);
+            
+        });
+        setSongs(albums[0].songs);
+    },[songs,nowPlaying]);
     
     return(
         <dialog 
             ref={playerRef} 
-            className="modal modal-top w-full min-h-screen md:w-1/2">
-            <div className="modal-box min-h-[350px] md:fit bg-orange-500 md:bg-transparent md:p-0 md:pt-4">
+            className={pathname =='/'?"modal modal-top w-full min-h-screen md:w-1/2":"modal modal-bottom sm:modal-middle w-full min-h-screen"}>
+            <div className="modal-box min-h-[350px] md:fit bg-orange-500 md:p-0 md:pt-4">
 
                 <div className="md:relative w-full md:w-fit mx-auto  bg-orange-500 md:p-4 md:rounded-lg scale-95 sm:scale-100">
                     <div className="absolute w-full flex top-0 right-0 items-center justify-end px-4 md:px-8 pb-4 md:py-4">
@@ -88,19 +102,32 @@ export const Player =()=>{
                         <h1 className="text-left text-white text-3xl font-bold">Now Playing</h1>
                     </div>
                     <div className="w-full p-4">
-                        <div className="w-full h-60 mx-auto bg-white rounded-lg overflow-hidden">
-                            <Image
-                                className='w-full h-full object-cover'
-                                src={Clown}
-                                alt='cover'
-                                width={200}
-                                height={200}
-                            />  
+                        <div className="w-full h-60 mx-auto bg-white rounded-lg overflow-hidden skeleton">
+                            {source?
+                                <Image
+                                    className='w-full h-full object-cover'
+                                    priority
+                                    src={source}
+                                    alt='cover'
+                                    width={200}
+                                    height={200}
+                                />:null
+                            }
                         </div>
                         <div className="pt-4">
                             <div className="text-white">
-                                <h2 className="text-3xl font-bold">{nowPlaying.name}</h2>
-                                <h3 className="text-base font-bold">Dus-tee</h3>
+                                <div className="flex items-center">
+                                    <h2 className="flex-1 text-2xl font-bold">{nowPlaying.title}</h2>
+                                    <Link href={soundCloud} target="_blank" title="listen on SoundClound">
+                                        <Image
+                                        src={SoundCloud}
+                                        alt="logo"
+                                        width={20}
+                                        height={20}              
+                                        />
+                                    </Link>
+                                </div>
+                                <h3 className="text-base font-bold">{nowPlaying.artist}</h3>
                             </div>
                             <div className="pt-4">
                                 <div className="flex items-center gap-4 text-white">
@@ -116,9 +143,8 @@ export const Player =()=>{
                                         onEnded={nextSong}
                                     />
                                     <input 
+                                        id="audio-seeker"
                                         type="range"
-                                        defaultValue={0} 
-                                        min={0}
                                         value={Math.floor(audioCurrentTime)}
                                         max={Math.floor(audioDuration)}
                                         onChange={seekAudio}

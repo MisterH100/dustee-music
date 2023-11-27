@@ -1,33 +1,15 @@
 'use client'
 import Image from 'next/image';
-import Clown from '@/assets/clown.png';
-import { useGlobalContext } from '@/hooks/globalContext';
+import { ISong, useGlobalContext } from '@/hooks/globalContext';
 import { useEffect, useRef, useState } from 'react';
-import { motion,useInView } from 'framer-motion';
+import { motion,} from 'framer-motion';
 
-
-
-interface ISong{
-    id:number;
-    name: string;
-    file: string;
-}
 
 export const Track =({song,}:{song:ISong})=>{
-    const {playerRef,isPlaying,setIsPlaying,nowPlaying,setNowPlaying,playPause,widget} = useGlobalContext();
+    const {isPlaying,nowPlaying,playSong,albums,setCursor} = useGlobalContext();
     const trackRef = useRef<HTMLAudioElement>(null);
     const [loadingTrackDuration,setLoadingTrackDuration] = useState(true);
-    
-    const playSong = (track:ISong) =>{
-        setNowPlaying(track);
-        setIsPlaying(!isPlaying);  
-        if(widget){
-            playPause()
-        }
-        else{
-            playerRef.current?.showModal();
-        }
-    }
+    const [source,setSource] = useState("");
     
     const calculateTime = (secs:number) => {
         const minutes = Math.floor(secs / 60);
@@ -48,22 +30,38 @@ export const Track =({song,}:{song:ISong})=>{
         setTimeout(()=>{
             setLoadingTrackDuration(false)
         },5000)
+        
+        albums.map((album)=>{
+            if(album.songs.find((song)=>song.id == song.id))
+            setSource(album.cover)
+        })
     },[])
 
     return(
         <motion.div
-            initial={{scaleX: 1,}}
+            onClick={()=>playSong(song)}
+            onMouseEnter={()=>setCursor(true)}
+            onMouseLeave={()=>setCursor(false)}
+            initial={{scaleX: 1,opacity:0}}
             whileHover={{scaleX:1.01}}
+            whileInView={{opacity:1}}
+            transition={{type:"spring"}}
             className='relative flex h-[100px] mt-4 bg-blue-700 rounded-lg overflow-hidden shadow hover:bg-blue-800 transition-all duration-300 ease-in-out group z-50'>
 
-            <div className="relative w-[100px] min-w-[80px] h-full z-10 group">
-                <Image
-                    className='w-full h-full object-cover'
-                    src={Clown}
-                    alt='cover'
-                    width={100}
-                    height={100}
-                />
+            <div className="relative min-w-[100px] h-full z-10 group">
+                {source?  
+                    <Image
+                        className='w-full h-full object-cover'
+                        priority
+                        src={source}
+                        alt='cover'
+                        width={100}
+                        height={100}
+                    />:
+                    <div className="w-full h-full skeleton">
+
+                    </div>
+                }
                 <span className="hidden group-hover:flex absolute w-full h-full top-0 left-0 justify-center items-center bg-stone-900 bg-opacity-50">
                     <button
                     onClick={()=>playSong(song)}
@@ -97,10 +95,10 @@ export const Track =({song,}:{song:ISong})=>{
                     </button>
                 </span>
             </div>
-            <div className="flex flex-1 h-full px-4">
-                <div className="w-1/2 flex flex-col justify-center">
-                    <h3 className="text-white text-xl md:text-2xl font-normal">{song.name}</h3>
-                    <h4 className="text-zinc-300 text-base md:text-xl font-normal">Dus-tee</h4>
+            <div className="w-full flex flex-1 h-full px-4">
+                <div className="w-full  md:w-52 flex flex-col justify-center">
+                    <h3 className="w-[80%] md:w-full text-white text-lg md:text-xl font-normal truncate">{song.title}</h3>
+                    <h4 className="text-zinc-300 text-base md:text-xl font-normal">{song.artist}</h4>
                     <div className="flex items-center gap-2">
                         <svg 
                         className="w-[12px] h-[12px] text-white" 
@@ -114,7 +112,7 @@ export const Track =({song,}:{song:ISong})=>{
                         <span className="text-zinc-300 text-sm font-normal">500</span>
                     </div>
                 </div>
-                <div className="w-1/2 flex justify-end items-center gap-10">
+                <div className="hidden  md:flex flex-1 justify-end items-center gap-10">
                     <span className="text-white">
                         {loadingTrackDuration?
                             <span className="loading loading-ring loading-xs"></span>:

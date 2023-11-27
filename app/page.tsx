@@ -1,3 +1,4 @@
+
 import { Header } from '@/components/Header';
 import { AboutSection } from '@/app/sections/About';
 import { HomeSection } from '@/app/sections/Home';
@@ -5,6 +6,7 @@ import { GallerySection } from './sections/Gallery';
 import { AlbumSection } from './sections/Albums';
 import { Footer } from '@/components/Footer';
 import { Player } from '@/components/Player';
+
 
 
 export default function Home() {

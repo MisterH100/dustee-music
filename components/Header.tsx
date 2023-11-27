@@ -2,11 +2,9 @@
 import Link from "next/link"
 import { Drawer } from "./Drawer"
 import { useGlobalContext } from "@/hooks/globalContext"
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Widget } from "./Widget";
 import { motion,AnimatePresence } from "framer-motion";
-import { Navigator } from "./Navigator";
-
 
 
 
@@ -15,33 +13,31 @@ export const Header = ()=>{
     const [isScrolled, setIsScrolled] = useState(false);
     const headerRef = useRef<HTMLElement>(null);
 
-    if(typeof window !== 'undefined'){
-        window.addEventListener("scroll",()=>{
-            if(window.scrollY > 100){
-                setIsScrolled(true);
-            }else{
-                setIsScrolled(false);
-            }
-        });
-        
-    }
-
+    
     const navLinks =[
         {link: "Home",href:"#home"},
         {link: "About",href:"#about"},
         {link: "Albums",href:"#albums"},
         {link: "Gallery",href:"#gallery"},
-
+        
     ]
+    
+    useEffect(()=>{
+        if(typeof window !== 'undefined'){
+            window.addEventListener("scroll",()=>{
+                if(window.scrollY > 100){
+                    setIsScrolled(true);
+                }else{
+                    setIsScrolled(false);
+                }
+            });
+            
+        }
+    },[isScrolled])
 
     return(
         <header ref={headerRef}
             className="fixed top-0 left-0 w-full h-[120px] z-[999] overflow-hidden">
-            <AnimatePresence>
-                {cursor?  
-                    <Navigator/>:null
-                }
-            </AnimatePresence>
             <div className="block md:hidden absolute w-full h-full top-0 left-0 bg-gradient-to-b from-stone-900 to-80% bg-opacity-80">
 
             </div>

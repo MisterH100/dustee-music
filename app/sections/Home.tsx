@@ -4,15 +4,20 @@ import HomeBg from '@/assets/homebg.png';
 import { SocialLinks } from '@/components/SocialLinks';
 import SwirlyArrow from '@/assets/swirly-arrow.svg';
 import { Track } from '@/components/Track';
-import { useGlobalContext } from '@/hooks/globalContext';
+import { ISong, useGlobalContext } from '@/hooks/globalContext';
 import { motion,useInView } from 'framer-motion';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 
 export const HomeSection =()=>{
-    const {songs,setCursor} = useGlobalContext();
+    const {albums} = useGlobalContext();
+    const [todayPicks,setTodayPicks] = useState<ISong[]>([]);
     const containerRef = useRef(null);
     const isInView = useInView(containerRef);
+
+    useEffect(()=>{
+        setTodayPicks([albums[0].songs[2],albums[0].songs[3]]);
+    },[]);
 
     return(
         <section className="relative w-full min-h-screen" id="home">
@@ -22,6 +27,7 @@ export const HomeSection =()=>{
                         className="w-full h-full object-cover"
                         src={HomeBg}
                         alt="home-bg"
+                        style={{width: "auto", height:"100%"}}
                     />
                     <div className="absolute w-full h-full bottom-0 left-0 z-10 bg-gradient-to-t from-stone-900 to-60% bg-opacity-80">
 
@@ -43,17 +49,17 @@ export const HomeSection =()=>{
 
                     </div>
                     <div
-                        onMouseEnter={()=>setCursor(true)}
-                        onMouseLeave={()=>setCursor(false)}
                         className="relative z-20 pt-4">
                         <h2 className="text-white text-lg font-bold">Today's picks
                         </h2>
-                        {songs.map((song,index)=>
-                            <Track 
-                                key={index} 
-                                song={song}
-                            />
-                        )}
+                        { 
+                            todayPicks.map((pick,index)=>
+                                <Track 
+                                    key={index} 
+                                    song={pick}
+                                />
+                            )
+                        }
                     </div>
                     <motion.div
                         animate={isInView?"enter":"exit"}

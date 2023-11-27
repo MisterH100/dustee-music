@@ -9,8 +9,8 @@ export const Widget =()=>{
         <div
             onMouseEnter={()=>setCursor(true)}
             onMouseLeave={()=>setCursor(false)}
-            className="relative w-full h-full flex items-center p-2 md:p-10">
-            <motion.button
+            className="relative w-full h-full flex items-center p-2 md:p-10 text-white">
+            <motion.div
                 initial={{scaleX:1}}
                 whileHover={{scaleX:1.01}}
                 onClick={()=>{
@@ -37,7 +37,7 @@ export const Widget =()=>{
                     </div>
                     <div className="flex flex-col text-left">
                         <span className="text-sm text-bold">Now Playing</span>
-                        <span className="text-xs">{nowPlaying.name}</span>
+                        <span className="text-xs">{nowPlaying.title}</span>
                         <span className="text-xs">Dus-tee</span>
                     </div>
                 </div>
@@ -49,7 +49,7 @@ export const Widget =()=>{
                     <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 4 4 4-4"/>
                     </svg>
                 </button>
-            </motion.button>
+            </motion.div>
         </div>
     )
 }

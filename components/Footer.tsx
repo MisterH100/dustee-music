@@ -16,8 +16,7 @@ export const Footer =()=>{
                     <ul>
                         <li><Link href={'/'}>Instagram</Link></li>
                         <li><Link href={'/'}>YouTube</Link></li>
-                        <li><Link href={'/'}>Twitter</Link></li>
-                        <li><Link href={'/'}>Facebook</Link></li>
+                        <li><Link href={'/'}>SoundCloud</Link></li>
                     </ul>
                 </div>
             </nav>

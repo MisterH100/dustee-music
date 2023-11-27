@@ -10,7 +10,6 @@ export const Carousel =()=>{
     const {setCursor} = useGlobalContext();
     const containerRef = useRef(null);
     const isInView = useInView(containerRef);
-    const [translateX,setTranslateX] = useState(-300);
 
     const images = [HomeBg,AboutBg,DTMAlbum];
     return(
@@ -21,7 +20,7 @@ export const Carousel =()=>{
             className="relative w-full carousel">
             <motion.div 
                 initial={{x:0}}
-                animate={isInView?{x:translateX}:{x:0}}
+                animate={isInView?{x:[-300,-200,-100,0]}:{x:0}}
                 transition={{duration:1}}
                 className="w-fit flex gap-5">
                 {images.map((image,index)=>  

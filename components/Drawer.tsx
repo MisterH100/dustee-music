@@ -2,6 +2,7 @@
 import { useRouter} from "next/navigation";
 import { SocialLinks } from "./SocialLinks"
 import { useGlobalContext } from "@/hooks/globalContext"
+import Link from "next/link";
 
 
 
@@ -73,8 +74,7 @@ export const Drawer =()=>{
                                 <label 
                                     htmlFor="my-drawer" 
                                     aria-label="close sidebar" 
-                                    className="text-white text-xl font-medium drawer-overlay w-fit cursor-pointer"
-                                    style={hash == link.href? {fontSize: "40px"}: {}}
+                                    className={`text-white font-medium drawer-overlay w-fit cursor-pointer ${hash == link.href?"text-4xl":"text-xl"}`}     
                                     >
                                     {link.link}
                                 </label>
@@ -83,6 +83,12 @@ export const Drawer =()=>{
                     </div>
                     <div className="pt-10">
                         <SocialLinks/>
+                    </div>
+                    <div className="w-full pt-10">
+                        <Link 
+                            className="link link-info w-full text-center"
+                            href="https://thehandsomedev.com/#contact" target="_blank">{">"}report problems/bugs
+                        </Link>
                     </div>
                 </ul>
             </div>

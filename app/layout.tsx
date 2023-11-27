@@ -13,7 +13,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Dus-tee Music',
-  description: 'Oficial website for Dus-tee @the_everlasting_storm',
+  description: 'Official website for Dus-tee @the_everlasting_storm',
 }
 
 export default function RootLayout({

@@ -7,9 +7,9 @@ import Youtube from '@/assets/YouTube-Icon.svg';
 
 export const SocialLinks =()=>{
     const links =[
-        {url:"#", name: "SoundCloud",logo: SoundCloud},
+        {url:"https://soundcloud.com/user-565416632", name: "SoundCloud",logo: SoundCloud},
         {url:"https://instagram.com/the_everlasting_storm", name: "Instagram",logo: Instagram},
-        {url:"#", name: "YouTube",logo: Youtube}
+        {url:"https://www.youtube.com/@dus-tee1886", name: "YouTube",logo: Youtube}
     ];
 
     return(
@@ -25,8 +25,7 @@ export const SocialLinks =()=>{
                         <Image
                             src={link.logo}
                             alt="logo"
-                            width={20}
-                            height={20}
+                            style={{width:"auto",height:"auto"}}
                         />
                     </div>
                     <span className="text-white text-sm font-bold">{link.name}</span>
