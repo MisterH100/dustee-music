@@ -37,7 +37,7 @@ export const AlbumSection = ()=>{
                     </motion.div>
                     <h1 className="text-white text-5xl md:text-8xl font-bold">Albums</h1>
                 </div>
-                <h2 className="text-white text-lg font-bold mt-10">New Realease</h2>
+                <h2 className="text-white text-lg font-bold mt-10">New Release</h2>
                 <motion.div 
                     initial={{scale: 1,}}
                     whileHover={{scale:1.01}}
