@@ -24,7 +24,7 @@ export const Drawer =()=>{
     ]
 
     return(
-        <div className="drawer drawer-end">
+        <div className="drawer drawer-end sm:w-1/2 h-full flex md:hidden justify-end items-center px-4">
             <input id="my-drawer" type="checkbox" className="drawer-toggle" />
             <div className="drawer-content flex justify-end">
                 <label 
