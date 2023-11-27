@@ -111,7 +111,7 @@ export const Track =({song,}:{song:ISong})=>{
                         <path d="M0 .984v14.032a1 1 0 0 0 1.506.845l12.006-7.016a.974.974 0 0 0 0-1.69L1.506.139A1 1 0 0 0 0 .984Z"
                         />
                         </svg>
-                        <span className="text-zinc-300 text-sm font-normal">500</span>
+                        <span className="text-zinc-300 text-sm font-normal" title="DTM has reached over 90 listens according to soundClound">96</span>
                     </div>
                 </div>
                 <div className="hidden  md:flex flex-1 justify-end items-center gap-10">
