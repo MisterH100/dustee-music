@@ -37,7 +37,7 @@ export const Header = ()=>{
 
     return(
         <header ref={headerRef}
-            className="fixed top-0 left-0 w-full h-[120px] z-[999] overflow-hidden">
+            className="fixed top-0 left-0 w-full h-[120px] z-[100] overflow-hidden">
             <div className="block md:hidden absolute w-full h-full top-0 left-0 bg-gradient-to-b from-stone-900 to-80% bg-opacity-80">
 
             </div>

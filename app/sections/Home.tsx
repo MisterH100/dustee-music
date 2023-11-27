@@ -33,7 +33,7 @@ export const HomeSection =()=>{
 
                     </div>
                 </div>
-                <div className="absolute md:relative top-0 w-full h-screen md:w-1/2 bg-stone-900 bg-opacity-50 pt-40 px-4 md:px-10 z-[100]">
+                <div className="absolute md:relative top-0 w-full h-screen md:w-1/2 bg-stone-900 bg-opacity-50 pt-40 px-4 md:px-10 z-50">
                     <div className="relative w-fit overflow-hidden" ref={containerRef}>
                         <motion.div
                             initial={{width:"100%"}}
